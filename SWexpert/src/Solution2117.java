@@ -12,6 +12,7 @@ public class Solution2117 {
 	static Queue<Point> q = new LinkedList<>();
 	static int[] dx = {-1, 1, 0, 0};
 	static int[] dy = {0, 0, -1, 1};
+	static int maxHome;
 	
 	static class Point {
 		int x, y;
@@ -42,8 +43,7 @@ public class Solution2117 {
 					}
 				}
 			}
-			
-			K = getK(home * M);
+			maxHome = 0;
 			
 		}
 	}
@@ -54,6 +54,7 @@ public class Solution2117 {
 		q.offer(new Point(x, y));
 		
 		int cnt = 0;
+		int home = 0;
 		while(!q.isEmpty()) {
 			int qsize = q.size();
 			//cnt가 최대 K가 되면 중지
@@ -63,7 +64,9 @@ public class Solution2117 {
 			}
 			for(int i = 0; i < qsize; i++) {
 				Point p = q.poll();
-				
+				if(board[p.y][p.x] == 1) {
+					home++;
+				}
 				for(int j = 0; j < 4; j++) {
 					int nx = p.x + dx[j];
 					int ny = p.y + dy[j];
@@ -75,6 +78,9 @@ public class Solution2117 {
 						q.offer(new Point(nx, ny));
 					}
 				}
+			}
+			if(home * M > getPay(cnt)) {
+				
 			}
 			cnt++;
 		}
