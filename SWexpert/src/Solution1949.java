@@ -68,6 +68,7 @@ public class Solution1949 {
 					if (flag) {
 						if (board[ny][nx] - K < board[y][x]) {
 							int tmp = board[ny][nx];
+							//K가 아니라 현재위치보다 1만 작게 깎아주는게 요지 여기가 제일 핵심임!!!
 							board[ny][nx] = board[y][x] - 1;
 							dfs(nx, ny, visited, !flag, cnt + 1);
 							visited[ny][nx] = false;
